@@ -97,3 +97,90 @@ select
         else 'Invalid'
         end as validations
 from raw_orders;
+
+-- Date Function Practice Questions
+-- Extract the year, month, and day from order_date.
+select
+       year(order_date),
+       month(order_date),
+       day(order_date)
+from raw_orders;
+
+-- Calculate the delivery delay (number of days between order_date and delivery_date).
+
+select 
+         order_date,
+         delivery_date,
+         Datediff(delivery_date, order_date) as delay
+from
+        raw_orders;
+        
+-- Replace '1900-01-01' placeholder dates in delivery_date with NULL.
+
+select
+        delivery_date,
+        NULLIF(delivery_date, '1900-01-01') as cleaned
+from raw_orders;
+
+-- Add 7 days to order_date to find the expected_delivery_date.
+select
+       order_date,
+       date_add(order_date, interval 7 day) as expected_date
+from raw_orders;
+
+--  Find all orders placed in the same month and year (group by month-year).
+
+select
+       date_format(order_date, '%y-%m') as month_year,
+       count(*),
+       sum(total_amount) as tottal_amount
+from raw_orders
+group by
+     date_format(order_date, '%y-%m') 
+order by
+		month_year;
+
+-- NULL Handling Practice Questions
+
+-- Replace missing email with 'unknown@company.com'.
+select
+      email,
+      coalesce(NULLIF(email, ''), 'unknown@company.com') as filled_data
+from raw_orders;
+
+-- Convert empty customer_name strings ('') into NULL.
+
+select 
+       customer_name,
+       NULLIF(customer_name, '') as null_filled_values
+from raw_orders;
+
+-- Fill missing total_amount values with 0.
+select 
+      total_amount,
+      coalesce(total_amount, 0) as total_amount_fixed
+from raw_orders;
+
+-- Classify each record as 'Valid' or 'Incomplete' based on whether any critical fields 
+-- (customer_name, email, total_amount) are NULL.
+
+select
+       customer_name,
+       email,
+       total_amount,
+       case
+           when customer_name is NULL
+             or email is null
+             or total_amount is null
+             then 'Incomplete'
+             else 'Valid'
+		end as Validations
+from raw_orders;
+
+-- Replace missing delivery_date with the corresponding order_date.
+select 
+       delivery_date,
+       order_date,
+       coalesce(delivery_date, order_date) as replaced_date
+from raw_orders;
+
