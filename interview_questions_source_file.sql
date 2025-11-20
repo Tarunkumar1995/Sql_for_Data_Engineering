@@ -1,0 +1,202 @@
+create database interview_questions;
+use interview_questions;
+
+CREATE TABLE departments (
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(50)
+);
+
+INSERT INTO departments VALUES
+(10, 'Engineering'),
+(20, 'Data Science'),
+(30, 'Finance'),
+(40, 'HR'),
+(50, 'Marketing'),
+(60, 'Operations');
+
+CREATE TABLE employees (
+    emp_id INT PRIMARY KEY,
+    full_name VARCHAR(100),
+    gender CHAR(1),
+    department_id INT,
+    hire_date DATE,
+    city VARCHAR(50),
+    FOREIGN KEY (department_id) REFERENCES departments(department_id)
+);
+
+INSERT INTO employees VALUES
+(101, 'Rahul Singh', 'M', 10, '2018-01-12', 'Mumbai'),
+(102, 'Asha Reddy', 'F', 20, '2019-03-10', 'Hyderabad'),
+(103, 'David John', 'M', 20, '2020-11-03', 'Bengaluru'),
+(104, 'Pooja Sharma', 'F', 30, '2017-06-22', 'Pune'),
+(105, 'Tarun Kumar', 'M', 10, '2021-07-19', 'Chennai'),
+(106, 'Sara Paul', 'F', 40, '2016-08-02', 'Delhi'),
+(107, 'Manoj Verma', 'M', 10, '2019-02-15', 'Mumbai'),
+(108, 'Priya Singh', 'F', 20, '2022-12-10', 'Bengaluru'),
+(109, 'John Wick', 'M', 50, '2020-04-08', 'Hyderabad'),
+(110, 'Arjun Das', 'M', 60, '2019-09-25', 'Pune'),
+(111, 'Meera Nair', 'F', 40, '2021-11-17', 'Delhi'),
+(112, 'Rohit Sharma', 'M', 10, '2018-07-05', 'Mumbai'),
+(113, 'Anita Joseph', 'F', 60, '2020-12-28', 'Kochi'),
+(114, 'Chris Paul', 'M', 20, '2023-01-15', 'Bengaluru'),
+(115, 'Sneha Patil', 'F', 30, '2022-05-22', 'Pune'),
+(116, 'Gaurav Mehta', 'M', 10, '2017-10-10', 'Chennai'),
+(117, 'Deepa Rao', 'F', 50, '2018-02-14', 'Hyderabad'),
+(118, 'Vikas Gupta', 'M', 30, '2021-09-03', 'Delhi'),
+(119, 'Ritu Saini', 'F', 60, '2019-04-19', 'Kochi'),
+(120, 'Aman Jain', 'M', 40, '2020-03-13', 'Pune'),
+(121, 'Aditya Rao', 'M', 10, '2018-05-17', 'Mumbai'),
+(122, 'Neha Sharma', 'F', 20, '2017-11-20', 'Bengaluru'),
+(123, 'Karan Patel', 'M', 50, '2019-06-22', 'Chennai'),
+(124, 'Divya Kumar', 'F', 30, '2020-12-01', 'Delhi'),
+(125, 'Naveen Roy', 'M', 60, '2021-01-19', 'Hyderabad'),
+(126, 'Anjali Singh', 'F', 10, '2022-04-14', 'Mumbai'),
+(127, 'Sanjay Yadav', 'M', 50, '2018-09-11', 'Pune'),
+(128, 'Shreya Rao', 'F', 40, '2019-08-07', 'Chennai'),
+(129, 'Harsh Verma', 'M', 20, '2020-01-28', 'Delhi'),
+(130, 'Isha Singh', 'F', 30, '2016-05-05', 'Mumbai'),
+(131, 'Ramesh Kumar', 'M', 10, '2021-03-23', 'Hyderabad'),
+(132, 'Jasmine Ali', 'F', 20, '2022-08-30', 'Kochi'),
+(133, 'Sagar Patil', 'M', 30, '2018-04-18', 'Bengaluru'),
+(134, 'Heena Baji', 'F', 60, '2020-06-01', 'Mumbai'),
+(135, 'Raj Malhotra', 'M', 10, '2017-01-13', 'Pune'),
+(136, 'Trisha Sen', 'F', 50, '2019-07-27', 'Delhi'),
+(137, 'Omkar Desai', 'M', 20, '2021-10-14', 'Chennai'),
+(138, 'Lavanya Pillai', 'F', 40, '2018-02-09', 'Hyderabad'),
+(139, 'Nikhil Jain', 'M', 30, '2022-05-11', 'Kochi'),
+(140, 'Maria George', 'F', 10, '2023-01-02', 'Mumbai'),
+(141, 'Sahil Arora', 'M', 50, '2016-12-01', 'Delhi'),
+(142, 'Vidya Nair', 'F', 20, '2019-03-29', 'Pune'),
+(143, 'Rohan Joshi', 'M', 60, '2021-09-15', 'Chennai'),
+(144, 'Sunita Rao', 'F', 40, '2017-06-26', 'Bengaluru'),
+(145, 'Ajay Kumar', 'M', 30, '2019-10-04', 'Mumbai'),
+(146, 'Kavya Menon', 'F', 10, '2020-02-22', 'Hyderabad'),
+(147, 'Pawan Singh', 'M', 20, '2018-08-13', 'Delhi'),
+(148, 'Tara Sharma', 'F', 30, '2021-12-17', 'Kochi'),
+(149, 'Mohit Jain', 'M', 60, '2022-06-09', 'Chennai'),
+(150, 'Rekha Rao', 'F', 50, '2017-03-21', 'Mumbai');
+
+
+CREATE TABLE salaries (
+    emp_id INT,
+    salary INT,
+    effective_from DATE,
+    FOREIGN KEY (emp_id) REFERENCES employees(emp_id)
+);
+
+INSERT INTO salaries VALUES
+(101, 80000, '2022-01-01'),
+(101, 85000, '2023-01-01'),
+(101, 90000, '2024-01-01'),
+
+(102, 60000, '2022-01-01'),
+(102, 65000, '2023-01-01'),
+
+(103, 68000, '2022-01-01'),
+(103, 72000, '2024-01-01'),
+
+(104, 92000, '2021-01-01'),
+(104, 98000, '2024-01-01'),
+
+(105, 55000, '2022-01-01'),
+(105, 60000, '2023-01-01'),
+
+(106, 90000, '2022-01-01'),
+
+(107, 75000, '2022-01-01'),
+(108, 62000, '2023-01-01'),
+(109, 70000, '2020-01-01'),
+(110, 65000, '2022-01-01'),
+(111, 69000, '2021-01-01'),
+(112, 72000, '2023-01-01'),
+(113, 77000, '2022-01-01'),
+(114, 60000, '2023-01-01'),
+(115, 82000, '2022-01-01'),
+(116, 73000, '2020-01-01'),
+(117, 64000, '2021-01-01'),
+(118, 78000, '2022-01-01'),
+(119, 69000, '2021-01-01'),
+(120, 71000, '2022-01-01'),
+(121, 76000, '2021-01-01'),
+(122, 65000, '2020-01-01'),
+(123, 72000, '2021-01-01'),
+(124, 83000, '2022-01-01'),
+(125, 67000, '2021-01-01'),
+(126, 60000, '2022-01-01'),
+(127, 71000, '2020-01-01'),
+(128, 68000, '2021-01-01'),
+(129, 72000, '2022-01-01'),
+(130, 90000, '2019-01-01'),
+(131, 63000, '2022-01-01'),
+(132, 62000, '2023-01-01'),
+(133, 76000, '2022-01-01'),
+(134, 69000, '2021-01-01'),
+(135, 88000, '2023-01-01'),
+(136, 75000, '2020-01-01'),
+(137, 68000, '2021-01-01'),
+(138, 72000, '2022-01-01'),
+(139, 74000, '2023-01-01'),
+(140, 60000, '2023-01-01'),
+(141, 90000, '2019-01-01'),
+(142, 65000, '2020-01-01'),
+(143, 78000, '2022-01-01'),
+(144, 67000, '2019-01-01'),
+(145, 72000, '2020-01-01'),
+(146, 61000, '2021-01-01'),
+(147, 69000, '2022-01-01'),
+(148, 81000, '2023-01-01'),
+(149, 78000, '2022-01-01'),
+(150, 70000, '2020-01-01');
+
+
+CREATE TABLE projects (
+    project_id INT,
+    project_name VARCHAR(100),
+    emp_id INT,
+    hours_worked INT,
+    status VARCHAR(20),
+    FOREIGN KEY (emp_id) REFERENCES employees(emp_id)
+);
+
+INSERT INTO projects VALUES
+(501, 'Sales Dashboard', 101, 120, 'Completed'),
+(502, 'ETL Pipeline', 102, 85, 'Ongoing'),
+(503, 'Customer API', 103, 130, 'Completed'),
+(504, 'Forecast System', 104, 95, 'On Hold'),
+(505, 'Risk Engine', 105, 60, 'Completed'),
+(506, 'HR Portal', 106, 140, 'Completed'),
+(507, 'Data Lake', 107, 155, 'Ongoing'),
+(508, 'ML Pipeline', 108, 90, 'Completed'),
+(509, 'Ad Campaign', 109, 110, 'Ongoing'),
+(510, 'Customer Segmentation', 110, 125, 'Completed'),
+(511, 'Budget Analysis', 111, 80, 'Completed'),
+(512, 'Reporting Tool', 112, 150, 'Completed'),
+(513, 'Inventory App', 113, 130, 'On Hold'),
+(514, 'CRM Migration', 114, 90, 'Completed'),
+(515, 'Finance Model', 115, 105, 'Completed'),
+(516, 'Ops Dashboard', 116, 115, 'Ongoing'),
+(517, 'ETL Migration', 117, 70, 'Completed'),
+(518, 'Customer Insights', 118, 95, 'Completed'),
+(519, 'Data Quality Scan', 119, 80, 'Completed'),
+(520, 'Talent Portal', 120, 110, 'On Hold'),
+(521, 'Backend Refactor', 121, 125, 'Completed'),
+(522, 'Fraud API', 122, 140, 'Completed'),
+(523, 'Ad Platform', 123, 110, 'Ongoing'),
+(524, 'Sales Insights', 124, 150, 'Completed'),
+(525, 'Shipment Tracking', 125, 95, 'Ongoing'),
+(526, 'Warehouse App', 126, 65, 'Completed'),
+(527, 'Customer Journey', 127, 120, 'On Hold'),
+(528, 'Forecast ML', 128, 100, 'Completed'),
+(529, 'Analytics Engine', 129, 140, 'Completed'),
+(530, 'Tax Optimizer', 130, 130, 'Completed'),
+(531, 'Route Planner', 131, 80, 'Completed'),
+(532, 'Logistics Data Hub', 132, 95, 'Ongoing'),
+(533, 'Trend Analyzer', 133, 115, 'Completed'),
+(534, 'People Analytics', 134, 90, 'Completed'),
+(535, 'Chatbot', 135, 100, 'Completed'),
+(536, 'HRML Ops', 136, 110, 'Ongoing'),
+(537, 'Client Portal', 137, 125, 'Completed'),
+(538, 'Supply Chain BL', 138, 140, 'Completed'),
+(539, 'Growth Dashboard', 139, 80, 'Completed'),
+(540, 'Voice Search', 140, 70, 'On Hold');
+
